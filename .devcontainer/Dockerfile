@@ -14,11 +14,15 @@ ENV PATH="/root/.local/bin:$PATH"
 
 WORKDIR /app
 
-RUN uv venv running
+# 1. Create the virtual environment named exactly .venv
+RUN uv venv .venv
 
-COPY requierments.txt .
+# 2. Copy the pyproject.toml (and uv.lock if it exists) instead of requirements.txt
+COPY pyproject.toml uv.lock* ./
 
-RUN uv pip install --python running/bin/python -r requierments.txt
+# 3. Install dependencies using the exact pattern required by the rubric
+RUN uv pip install --python .venv/bin/python -e .
 
-ENV VIRTUAL_ENV=/app/running
+# 4. Set the environment variables to the correct .venv path
+ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:$PATH"

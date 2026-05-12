@@ -1,7 +1,7 @@
 {
-    "name": "ML Workshop 2 - Work Evirment",
-    "build":{
-        "dockerfile":"Dockerfile"
+    "name": "ML Workshop 2 - Work Environment",
+    "build": {
+        "dockerfile": "Dockerfile"
     },
     "customizations": {
         "vscode": {
@@ -12,11 +12,11 @@
                 "charliemarsh.ruff",
                 "ms-azuretools.vscode-containers"
             ],
-            "settings":{
-                "python.defaultInterpreterPath": "/app/running/bin/python",
-            "jupyter.notebookFileRoot": "${workspaceFolder}"
+            "settings": {
+                "python.defaultInterpreterPath": "/app/.venv/bin/python",
+                "jupyter.notebookFileRoot": "${workspaceFolder}"
             }
         }
-},
-"postCreateCommand": "echo 'source /app/running/bin/activate' >> ~/.bashrc"
+    },
+    "postCreateCommand": "echo 'source /app/.venv/bin/activate' >> ~/.bashrc"
 }
